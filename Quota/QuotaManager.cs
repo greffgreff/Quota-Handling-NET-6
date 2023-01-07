@@ -4,7 +4,7 @@
     {
         public string Name { get; }
         public int QuotaLimit { get; }
-        public int UseCost { get; }
+        public int DefaultUseCost { get; }
         public int QuotaLeft { get; private set; }
         public TimeSpan ReplinishTime { get; }
         public DateTime LastReplenish { get; private set; }
@@ -25,7 +25,7 @@
             QuotaLimit = quotaLimit;
             ReplinishTime = replenishTime;
             QuotaLeft = QuotaLimit;
-            UseCost = useCost;
+            DefaultUseCost = useCost;
         }
 
         public static QuotaManager Of(string name, int quota, TimeSpan window, int useCost = 1)
@@ -35,7 +35,7 @@
 
         public void Use()
         {
-            UseFor(UseCost);
+            UseFor(DefaultUseCost);
         }
 
         public void UseFor(int quota)
