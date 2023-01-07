@@ -52,5 +52,18 @@
             QuotaLeft -= quota;
             LastUse = DateTime.Now;
         }
+
+        public bool CanUse()
+        {
+            try
+            {
+                Use();
+                return true;
+            }
+            catch(NotEnoughQuotaException) 
+            {
+                return false;
+            }
+        } 
     }
 }
