@@ -12,7 +12,7 @@ namespace quota.Services
 
         public WeatheForecastService()
         {
-            _quota = QuotaManager.Of(GetType().Name, 10, TimeSpan.FromSeconds(10));
+            _quota = QuotaManager.Of(nameof(WeatheForecastService), 10_000, TimeSpan.FromDays(1));
         }
 
         public IEnumerable<WeatherForecast> Get()
